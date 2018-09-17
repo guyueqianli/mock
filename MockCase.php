@@ -82,7 +82,20 @@ class Mock_Case {
 
         // 替换
         $this->mockKeys($arrSliceKeys);
-        return $this->arrData;
+        $retData = array(
+            'error'     => 0,
+            'errmsg'    => 'success',
+            'data'      => array(),
+        );
+        $retData['data']['total'] = $this->num;
+        $retData['data']['intNum'] = $this->intNum;
+        $retData['data']['strNum'] = $this->strNum;
+        $retData['data']['boolNum'] = $this->boolNum;
+        $retData['data']['nullNum'] = $this->nullNum;
+        $retData['data']['arrNum'] = $this->arrNum;
+        $retData['data']['objNum'] = $this->objNum;
+        $retData['data']['list'] = $this->arrData;
+        return $retData;
     }
 
     /**
@@ -629,12 +642,14 @@ $arrJson = array(
         array(
             'id' => 11,
             'name' => 'guyueqianli',
-            'interest' => array(),
+            'studuent' => true,
+            'interest' => null,
             'objA' => $objA,
         ),
         array(
             'id' => 12,
             'name' => 'dyna',
+            'studuent' => false,
             'interest' => array(
                 'sleep',
                 'eat',
