@@ -94,6 +94,7 @@ class Mock_Case {
      */
     public function getArrWeightByJson($arrJson) {
         $arrWeight = array();
+        // 如果是对象类型的话, 则忽略
         // if(!is_array($arrJson) && !is_object($arrJson)) {
         if(!is_array($arrJson)) {
             return;
@@ -548,8 +549,7 @@ class Mock_Case {
      */
     public function subString($strValue) {
         $retStr= $strValue;
-        // $strSize = mb_strlen($strValue);
-        $strSize = strlen($strValue);
+        $strSize = mb_strlen($strValue);
         // 截断默认长度
         $defaultSize = 100;
         // 当 长度 >= defaultSize 时, 进行截断
@@ -572,7 +572,7 @@ class Mock_Case {
         $strRand = '';
         $strRand .= '你';
         for ($i = 0; $i < $size; $i++) {
-            $strRand .= $strRandom[rand(0, strlen($strRandom))];
+            $strRand .= $strRandom[rand(0, strlen($strRandom) - 1)];
         }
         return $strRand;
     }
@@ -628,16 +628,17 @@ $arrJson = array(
     'data' => array(
         array(
             'id' => 11,
-            'age' => 23,
             'name' => 'guyueqianli',
             'interest' => array(),
             'objA' => $objA,
         ),
         array(
             'id' => 12,
-            'age' => 24,
             'name' => 'dyna',
-            'interest' => array(),
+            'interest' => array(
+                'sleep',
+                'eat',
+            ),
             'objB' => $objB,
         ),
     ),
